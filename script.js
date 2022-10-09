@@ -62,29 +62,48 @@ function playRound(playerSelection, computerSelection) { //defining a function
     }
 
 function game() {
-    // playRound(playerSelection, computerSelection) //calling a function inside another function
-    // TODO define win tracking variables, they start as 0
+    // define win tracking variables, they start as 0
+    let playerWins = 0
+    let computerWins = 0
     for (let i = 0; i < 5; i++) {
         //play a round
-        const playerSelection = "rock";
+        let playerSelection = prompt();
         const computerSelection = getComputerChoice()
-        // TODO call playRound, store result in variable
-        playRound(playerSelection, computerSelection);
-        // TODO if statement on result to check who won, 
-        //      1) log out the winner (to say "x beats y", remember we have x and y stored as playerSelection and computerSelection variables )
-        //      2) update tracking variables
+        // call playRound, store result in variable (result)
+        let result = playRound(playerSelection, computerSelection)
+        // if statement on result to check who won
+        if (result == 0) {
+            console.log("You picked " + playerSelection + " and the computer picked " + computerSelection + " so it's a draw")
+        }
+        if (result == 1) {
+            console.log("You picked " + playerSelection + " and the computer picked " + computerSelection + " so you win")
+            playerWins++
+        }
+        if (result == 2) {
+            console.log("You picked " + playerSelection + " and the computer picked " + computerSelection + " so you lose")
+            computerWins++
+        }
+        if (result == 3) {
+            console.log("Invalid result")
+        }      
 
+    } 
+    // compare tracking variables to see who won overall, then log the winner
+    if (playerWins > computerWins) {
+        console.log("You win the game!")
+    }
+    if (computerWins > playerWins) {
+        console.log("You lose the game!")
     }
 
-    // TODO compare tracking variables to see who won overall, then log the winner
+
 
 
 }
 
 
-const playerSelection = "rock";
+
 const computerSelection = getComputerChoice()
-console.log(playRound(playerSelection, computerSelection));
 game();
 
 
